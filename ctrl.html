@@ -24,16 +24,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	jQuery(function($) {
-		var $event = $('#event'),
-			keys = {
-				ctrl: 'ctrlKey',
-				alt: 'altKey',
-				shift: 'shiftKey',
-				command: 'metaKey'
-			},
-			getHandler = function(event) {
+		var keys = {
+			ctrl: 'ctrlKey',
+			alt: 'altKey',
+			shift: 'shiftKey',
+			command: 'metaKey'
+		};
+
+		var getHandler = function(event) {
 			return function(e) {
-				if ($event.find('option:selected').data('event') == event) {
+				if ($('#event').find('option:selected').data('event') == event) {
 					$('#date').text(new Date().toISOString());
 					$.each(keys, function(id, key) {
 						$('#output-' + id).text(e[key] ? id.toUpperCase() : "no " + id);
