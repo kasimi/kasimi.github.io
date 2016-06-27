@@ -5,26 +5,49 @@
 	<title>Ctrl Test</title>
 </head>
 <body>
-<textarea type="text" id="input" placeholder="Start typing"></textarea>
+
+<span>Event type: </span>
+<select id="event">
+	<option data-event="keydown" selected>keydown</option>
+	<option data-event="keypress">keypress</option>
+	<option data-event="keyup">keyup</option>
+</select>
+
+<textarea id="input" rows="10" cols="40" placeholder="Start typing" style="display: block;"></textarea>
+
+<div id="date"></div>
 <div id="output-ctrl"></div>
 <div id="output-alt"></div>
 <div id="output-shift"></div>
 <div id="output-command"></div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	jQuery(function($) {
-		$('#input').keypress(function(e) {
-			$.each({
+		var $event = $('#event'),
+			keys = {
 				ctrl: 'ctrlKey',
 				alt: 'altKey',
 				shift: 'shiftKey',
 				command: 'metaKey'
-			}, function(id, key) {
-				$('#output-' + id).text(e[key] ? id.toUpperCase() : "no " + id);
-			});
-			if (e.ctrlKey) {
-				e.preventDefault();
-			}
+			},
+			getHandler = function(event) {
+			return function(e) {
+				if ($event.find('option:selected').data('event') == event) {
+					$('#date').text(new Date().toISOString());
+					$.each(keys, function(id, key) {
+						$('#output-' + id).text(e[key] ? id.toUpperCase() : "no " + id);
+					});
+					if (e.ctrlKey) {
+						e.preventDefault();
+					}
+				}
+			};
+		};
+
+		$('option[data-event]').each(function() {
+			var event = $(this).data('event');
+			$('#input').on(event, getHandler(event));
 		});
 	});
 </script>
