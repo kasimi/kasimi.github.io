@@ -6,12 +6,22 @@
 </head>
 <body>
 <input type="text" id="input" />
-<div id="output"></div>
+<div id="output-ctrl"></div>
+<div id="output-alt"></div>
+<div id="output-shift"></div>
+<div id="output-command"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	jQuery(function($) {
 		$('#input').keypress(function(e) {
-			$('#output').text(e.ctrlKey ? "CTRL" : "no ctrl");
+			$.each({
+				ctrl: 'ctrlKey',
+				alt: 'altKey',
+				shift: 'shiftKey',
+				command: 'metaKey'
+			}, function(id, key) {
+				$('#output-' + id).text(e[key] ? id.toUpperCase() : "no " + id);
+			});
 			if (e.ctrlKey) {
 				e.preventDefault();
 			}
