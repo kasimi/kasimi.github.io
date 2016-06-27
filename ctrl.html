@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Ctrl Test</title>
+</head>
+<body>
+<input type="text" id="input" />
+<div id="output"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	jQuery(function($) {
+		$('#input').keypress(function(e) {
+			$('#output').text(e.ctrlKey ? "CTRL" : "no ctrl");
+			if (e.ctrlKey) {
+				e.preventDefault();
+			}
+		});
+	});
+</script>
+</body>
+</html>
