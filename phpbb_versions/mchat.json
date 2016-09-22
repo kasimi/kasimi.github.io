@@ -1,6 +1,6 @@
 {
     "stable": {
-        "1.0": {
+        "2.0": {
             "current": "2.0.0-RC6",
             "download": "https://www.phpbb.com/community/viewtopic.php?f=456&t=2281451",
             "announcement": "https://www.phpbb.com/community/viewtopic.php?f=456&t=2281451",
@@ -9,7 +9,7 @@
         }
     },
     "unstable": {
-        "1.0": {
+        "2.0": {
             "current": "2.0.0-RC6",
             "download": "https://www.phpbb.com/community/viewtopic.php?f=456&t=2281451",
             "announcement": "https://www.phpbb.com/community/viewtopic.php?f=456&t=2281451",
